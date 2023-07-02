@@ -1,3 +1,4 @@
+//Program to model Xor also can model,NAND,AND,OR
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
@@ -5,6 +6,7 @@
 typedef float set[3];
 typedef struct
 {
+//Weight and bias matrix   w1    w2   b
     float xor_ona[3][3];
 
 } Xor;
@@ -53,19 +55,6 @@ set nor_gate[] = {
 set *train = NULL;
 size_t train_count = 4;
 
-float matrixMul(float x[], float y[])
-{
-    float sum = 0.0f;
-    float temp[3];
-    size_t size = 3;
-    for (size_t i = 0; i < size; i++)
-    {
-        sum += x[i] * y[i];
-    }
-
-    return sum;
-}
-
 float sigmoidf(float x)
 {
     return 1.f / (1.f + expf(-x));
@@ -80,6 +69,8 @@ float forward(Xor m, float x1, float x2)
     float c = sigmoidf(a * m.xor_ona[2][0] + b * m.xor_ona[2][1] + m.xor_ona[2][2]);
     return c;
 }
+
+
 float cost(Xor m)
 {
     float result = 0.0f;
@@ -96,6 +87,8 @@ float cost(Xor m)
     result /= train_count;
     return result;
 }
+
+
 float rand_float()
 {
     return (float)rand() / (float)RAND_MAX;

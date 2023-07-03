@@ -5,4 +5,4 @@ These are simple programs that utilise Cost function to give results;
 
 #Yet to be properly optimised;
 
-#written in C;
+
